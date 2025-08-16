@@ -1,16 +1,17 @@
 import { Router } from 'express';
 import { AnnouncementController } from './announcement.controller';
+import { auth } from '../../middleware/auth';
 
 const router = Router();
 
-router.get('/', AnnouncementController.getAnnouncements);
+router.get('/', auth, AnnouncementController.getAnnouncements);
 
-router.get('/:id', AnnouncementController.getAnnouncementById);
+router.get('/:id', auth, AnnouncementController.getAnnouncementById);
 
-router.post('/', AnnouncementController.createAnnouncement);
+router.post('/', auth, AnnouncementController.createAnnouncement);
 
-router.put('/:id', AnnouncementController.updateAnnouncement);
+router.put('/:id', auth, AnnouncementController.updateAnnouncement);
 
-router.delete('/:id', AnnouncementController.deleteAnnouncement);
+router.delete('/:id', auth, AnnouncementController.deleteAnnouncement);
 
 export default router;

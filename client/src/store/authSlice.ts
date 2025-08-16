@@ -17,8 +17,8 @@ export const login = createAsyncThunk(
   async (credentials: LoginRequest, { rejectWithValue }) => {
     try {
       const response = await authService.login(credentials);
+      // console.log("Login response: ", response.data.token);
       
-      // Store token and user in localStorage
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       
@@ -35,7 +35,6 @@ export const signup = createAsyncThunk(
     try {
       const response = await authService.signup(userData);
       
-      // Store token and user in localStorage
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('user', JSON.stringify(response.data.user));
       
@@ -47,7 +46,6 @@ export const signup = createAsyncThunk(
 );
 
 
-// Auth slice
 const authSlice = createSlice({
   name: 'auth',
   initialState,

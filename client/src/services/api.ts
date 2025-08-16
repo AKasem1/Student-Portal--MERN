@@ -14,13 +14,13 @@ const api = axios.create({
 // Add token to requests if available
 api.interceptors.request.use((config: any) => {
   const token = localStorage.getItem('token');
+  // console.log("Token in API interceptor: ", token);
   if (token) {
     config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
 
-// Handle token expiration
 api.interceptors.response.use(
   (response: any) => response,
   (error: any) => {

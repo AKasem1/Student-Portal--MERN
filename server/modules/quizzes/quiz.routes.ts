@@ -1,18 +1,19 @@
 import { Router } from 'express';
 import { QuizController } from './quiz.controller';
+import { auth } from '../../middleware/auth';
 
 const router = Router();
 
-router.get('/active', QuizController.getActiveQuizzes);
+router.get('/active', auth, QuizController.getActiveQuizzes);
 
-router.get('/', QuizController.getQuizzes);
+router.get('/', auth, QuizController.getQuizzes);
 
-router.get('/:id', QuizController.getQuizById);
+router.get('/:id', auth, QuizController.getQuizById);
 
-router.post('/', QuizController.createQuiz);
+router.post('/', auth, QuizController.createQuiz);
 
-router.put('/:id', QuizController.updateQuiz);
+router.put('/:id', auth, QuizController.updateQuiz);
 
-router.delete('/:id', QuizController.deleteQuiz);
+router.delete('/:id', auth, QuizController.deleteQuiz);
 
 export default router;
