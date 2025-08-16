@@ -1,0 +1,9 @@
+{
+  "name": "run-tests",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "vitest run",
+    "test:ui": "vitest --ui"
+  },
+  "type": "module"
+}

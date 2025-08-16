@@ -1,0 +1,391 @@
+openapi: 3.0.0
+info:
+  title: Student Portal API
+  description: API documentation for Users, Announcements, and Quizzes
+  version: 1.0.0
+servers:
+  - url: http://localhost:4000/api
+    description: Local development server
+
+paths:
+  /users/signup:
+    post:
+      summary: Register a new user
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: user@example.com
+                password:
+                  type: string
+                  example: securepassword
+      responses:
+        201:
+          description: Signup successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+
+  /users/login:
+    post:
+      summary: Authenticate user
+      tags: [Users]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  example: user@example.com
+                password:
+                  type: string
+                  example: securepassword
+      responses:
+        200:
+          description: Login successful
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AuthResponse'
+
+  /announcements:
+    get:
+      summary: Get all announcements
+      tags: [Announcements]
+      parameters:
+        - in: query
+          name: page
+          schema: { type: integer, example: 1 }
+        - in: query
+          name: limit
+          schema: { type: integer, example: 10 }
+        - in: query
+          name: priority
+          schema: { type: string, example: high }
+        - in: query
+          name: isActive
+          schema: { type: boolean, example: true }
+      responses:
+        200:
+          description: List of announcements
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnnouncementListResponse'
+    post:
+      summary: Create a new announcement
+      tags: [Announcements]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnnouncementCreate'
+      responses:
+        201:
+          description: Announcement created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnnouncementResponse'
+
+  /announcements/{id}:
+    get:
+      summary: Get announcement by ID
+      tags: [Announcements]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        200:
+          description: Announcement found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnnouncementResponse'
+    put:
+      summary: Update announcement
+      tags: [Announcements]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/AnnouncementUpdate'
+      responses:
+        200:
+          description: Announcement updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/AnnouncementResponse'
+    delete:
+      summary: Delete announcement
+      tags: [Announcements]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        200:
+          description: Announcement deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: success }
+                  message: { type: string, example: Announcement deleted successfully }
+
+  /quizzes:
+    get:
+      summary: Get all quizzes
+      tags: [Quizzes]
+      parameters:
+        - in: query
+          name: page
+          schema: { type: integer, example: 1 }
+        - in: query
+          name: limit
+          schema: { type: integer, example: 10 }
+        - in: query
+          name: subject
+          schema: { type: string, example: Math }
+        - in: query
+          name: isActive
+          schema: { type: boolean, example: true }
+      responses:
+        200:
+          description: List of quizzes
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizListResponse'
+    post:
+      summary: Create a new quiz
+      tags: [Quizzes]
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuizCreate'
+      responses:
+        201:
+          description: Quiz created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizResponse'
+
+  /quizzes/{id}:
+    get:
+      summary: Get quiz by ID
+      tags: [Quizzes]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        200:
+          description: Quiz found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizResponse'
+    put:
+      summary: Update quiz
+      tags: [Quizzes]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/QuizUpdate'
+      responses:
+        200:
+          description: Quiz updated
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/QuizResponse'
+    delete:
+      summary: Delete quiz
+      tags: [Quizzes]
+      parameters:
+        - in: path
+          name: id
+          required: true
+          schema: { type: string }
+      responses:
+        200:
+          description: Quiz deleted
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status: { type: string, example: success }
+                  message: { type: string, example: Quiz deleted successfully }
+
+components:
+  schemas:
+    AuthResponse:
+      type: object
+      properties:
+        status: { type: string, example: success }
+        message: { type: string, example: Signup successful }
+        data:
+          type: object
+          properties:
+            user:
+              type: object
+              properties:
+                _id: { type: string }
+                email: { type: string }
+                createdAt: { type: string, format: date-time }
+                updatedAt: { type: string, format: date-time }
+            token:
+              type: string
+              example: jwt-token
+
+    Announcement:
+      type: object
+      properties:
+        _id: { type: string }
+        title: { type: string }
+        content: { type: string }
+        author: { type: string }
+        priority: { type: string, enum: [low, medium, high] }
+        isActive: { type: boolean }
+        createdAt: { type: string, format: date-time }
+        updatedAt: { type: string, format: date-time }
+
+    AnnouncementCreate:
+      type: object
+      required: [title, content, author]
+      properties:
+        title: { type: string }
+        content: { type: string }
+        author: { type: string }
+        priority: { type: string, enum: [low, medium, high], example: medium }
+        isActive: { type: boolean, example: true }
+
+    AnnouncementUpdate:
+      type: object
+      properties:
+        title: { type: string }
+        content: { type: string }
+        priority: { type: string }
+        isActive: { type: boolean }
+
+    AnnouncementResponse:
+      type: object
+      properties:
+        status: { type: string, example: success }
+        data:
+          $ref: '#/components/schemas/Announcement'
+
+    AnnouncementListResponse:
+      type: object
+      properties:
+        status: { type: string, example: success }
+        data:
+          type: object
+          properties:
+            announcements:
+              type: array
+              items:
+                $ref: '#/components/schemas/Announcement'
+            pagination:
+              type: object
+              properties:
+                total: { type: integer }
+                page: { type: integer }
+                limit: { type: integer }
+                pages: { type: integer }
+
+    Quiz:
+      type: object
+      properties:
+        _id: { type: string }
+        title: { type: string }
+        description: { type: string }
+        subject: { type: string }
+        instructor: { type: string }
+        questions:
+          type: array
+          items:
+            type: object
+            properties:
+              question: { type: string }
+              options:
+                type: array
+                items: { type: string }
+              correctAnswer: { type: integer, description: "Index of the correct option" }
+              points: { type: integer }
+        isActive: { type: boolean }
+        startDate: { type: string, format: date-time }
+        endDate: { type: string, format: date-time }
+
+    QuizCreate:
+      allOf:
+        - $ref: '#/components/schemas/Quiz'
+      required: [title, subject, instructor, questions, startDate, endDate]
+
+    QuizUpdate:
+      type: object
+      properties:
+        title: { type: string }
+        description: { type: string }
+        isActive: { type: boolean }
+
+    QuizResponse:
+      type: object
+      properties:
+        status: { type: string, example: success }
+        data:
+          $ref: '#/components/schemas/Quiz'
+
+    QuizListResponse:
+      type: object
+      properties:
+        status: { type: string, example: success }
+        data:
+          type: object
+          properties:
+            quizzes:
+              type: array
+              items:
+                $ref: '#/components/schemas/Quiz'
+            pagination:
+              type: object
+              properties:
+                total: { type: integer }
+                page: { type: integer }
+                limit: { type: integer }
+                pages: { type: integer }
