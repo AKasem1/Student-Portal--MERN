@@ -21,6 +21,8 @@ Student Portal/
 │   │   └── users/            # User authentication module
 │   ├── tests/                # Backend test suites
 │   └── package.json
+├── postman/                   # API Testing Collection
+│   └── Student-Portal-API.postman_collection.json
 └── README.md                 # This file
 ```
 
@@ -90,7 +92,7 @@ Student Portal/
 
 ### 1. Clone the Repository
 ```bash
-git clone https://github.com/your-username/student-portal.git
+git clone https://github.com/AKasem1/Student-Portal--MERN
 cd student-portal
 ```
 
@@ -235,7 +237,58 @@ npm run test:watch
 npm run test:all
 ```
 
-## 📋 API Documentation
+## 📋 API Documentation & Testing
+
+### Interactive API Documentation
+The backend includes comprehensive API documentation with interactive testing capabilities:
+
+- **Swagger UI**: Available at `http://localhost:4000/api-docs` when server is running
+- **OpenAPI 3.0**: Complete API specification with request/response examples
+- **Authentication**: Built-in JWT token testing in Swagger interface
+
+### Postman Collection
+A complete Postman collection is included for API testing and development:
+
+**Location**: `./postman/Student-Portal-API.postman_collection.json`
+
+**Features**:
+- ✅ All API endpoints with examples
+- ✅ Pre-configured environment variables
+- ✅ Authentication workflow with automatic token management
+- ✅ Test scripts for response validation
+- ✅ Request/response examples for all endpoints
+
+**Import Instructions**:
+1. Open Postman
+2. Click "Import" button
+3. Select `Student-Portal-API.postman_collection.json`
+4. Configure environment variables:
+   - `base_url`: `http://localhost:4000/api`
+   - `token`: Will be auto-set after login
+
+**Collection Structure**:
+```
+Student Portal API/
+├── Authentication/
+│   ├── Register User
+│   ├── Login User
+│   └── Get Profile
+├── Announcements/
+│   ├── Get All Announcements
+│   ├── Get Announcement by ID
+│   ├── Create Announcement
+│   ├── Update Announcement
+│   └── Delete Announcement
+├── Quizzes/
+│   ├── Get All Quizzes
+│   ├── Get Active Quizzes
+│   ├── Get Quiz by ID
+│   ├── Create Quiz
+│   ├── Update Quiz
+│   └── Delete Quiz
+└── Health Check/
+    └── API Health Status
+```
 
 ### Authentication Endpoints
 - `POST /api/users/register` - User registration
@@ -258,6 +311,11 @@ npm run test:all
 - `PUT /api/quizzes/:id` - Update quiz (Auth required)
 - `DELETE /api/quizzes/:id` - Delete quiz (Auth required)
 
+### Authentication Header Format
+```
+Authorization: Bearer <jwt_token>
+```
+
 ### API Response Format
 ```json
 {
@@ -268,6 +326,13 @@ npm run test:all
   }
 }
 ```
+
+### Testing Workflow with Postman
+1. **Import Collection**: Load the provided Postman collection
+2. **Register/Login**: Use authentication endpoints to get JWT token
+3. **Auto Token**: Token automatically saved to environment variables
+4. **Test Endpoints**: All protected routes will use the token automatically
+5. **Validate Responses**: Built-in tests validate response structure
 
 ## 🔧 Configuration
 
@@ -287,17 +352,30 @@ npm run test:all
 - `CORS_ORIGIN` - Allowed origins for CORS
 - `LOG_LEVEL` - Logging level
 
+### 🎥 Demo Video
+Watch the complete application walkthrough and feature demonstration:
+
+**[📺 Student Portal Demo Video](https://drive.google.com/file/d/1aVbMoR4uWC8nYY5ef9qKunOQFx7Bf-SU/view?usp=sharing)**
+
+*This video showcases the full functionality including user authentication, dashboard features, announcements management, quiz system, and internationalization capabilities.*
+
 ## 📚 Project Documentation
 
 ### Backend Documentation
 - [Server README](./server/README.md) - Comprehensive backend documentation
 - [API Documentation](./server/README.md#api-endpoints) - REST API reference
+- [Swagger UI](http://localhost:4000/api-docs) - Interactive API testing
 - [Testing Guide](./server/TESTING.md) - Backend testing documentation
 
 ### Frontend Documentation
 - [Client README](./client/README.md) - Frontend application documentation
 - [Dashboard Guide](./client/DASHBOARD.md) - Dashboard components documentation
 - [Component Architecture](./client/README.md#component-architecture) - UI architecture guide
+
+### API Testing Resources
+- **Postman Collection**: `./postman/Student-Portal-API.postman_collection.json`
+- **Swagger Documentation**: `http://localhost:4000/api-docs`
+- **API Examples**: Comprehensive request/response examples in both tools
 
 ## 🔒 Security Features
 
@@ -321,36 +399,6 @@ npm run test:all
 - X-Content-Type-Options
 - Secure cookie settings
 
-## 🚀 Deployment
-
-### Frontend Deployment (Vercel/Netlify)
-```bash
-cd client
-npm run build
-
-# Deploy dist/ folder to your platform
-# Set environment variables in platform dashboard
-```
-
-### Backend Deployment (Heroku/Railway/DigitalOcean)
-```bash
-cd server
-npm run build
-
-# Deploy according to platform instructions
-# Set environment variables in platform
-```
-
-### Docker Deployment
-```bash
-# Build and run with Docker Compose
-docker-compose up --build
-
-# Or individual containers
-docker build -t student-portal-client ./client
-docker build -t student-portal-server ./server
-```
-
 ## 📊 Performance Optimization
 
 ### Frontend Optimizations
@@ -366,23 +414,6 @@ docker build -t student-portal-server ./server
 - Response caching
 - Connection pooling
 - Rate limiting
-
-## 🤝 Contributing
-
-### Development Workflow
-1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/amazing-feature`
-3. Make your changes
-4. Run tests: `npm test` (both client and server)
-5. Commit changes: `git commit -m 'Add amazing feature'`
-6. Push to branch: `git push origin feature/amazing-feature`
-7. Open a Pull Request
-
-### Code Standards
-- **TypeScript** - Strict type checking enabled
-- **ESLint** - Code quality enforcement
-- **Testing** - Comprehensive test coverage required
-- **Documentation** - Update relevant documentation
 
 ### Development Commands
 ```bash
@@ -469,6 +500,8 @@ node --version  # Should be v18+
 ### Resources
 - **Backend API**: [Server Documentation](./server/README.md)
 - **Frontend Guide**: [Client Documentation](./client/README.md)
+- **API Testing**: [Postman Collection](./postman/Student-Portal-API.postman_collection.json)
+- **Interactive Docs**: [Swagger UI](http://localhost:4000/api-docs)
 - **Testing**: [Testing Documentation](./server/TESTING.md)
 - **Deployment**: [Deployment Guide](#deployment)
 
@@ -477,7 +510,7 @@ node --version  # Should be v18+
 **Quick Start Commands:**
 ```bash
 # Complete setup
-git clone https://github.com/your-username/student-portal.git
+git clone https://github.com/AKasem1/Student-Portal--MERN
 cd student-portal
 
 # Backend setup
@@ -485,6 +518,9 @@ cd server && npm install && cp .env.example .env
 
 # Frontend setup  
 cd ../client && npm install && cp .env.example .env
+
+# Import Postman collection for API testing
+# File: ./postman/Student-Portal-API.postman_collection.json
 
 # Run development servers
 cd ../server && npm run dev  # Terminal 1

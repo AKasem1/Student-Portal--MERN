@@ -1,0 +1,504 @@
+{
+	"info": {
+		"_postman_id": "983ff8ff-7845-4e4d-bb83-7d76f575f165",
+		"name": "Coligo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "24129547"
+	},
+	"item": [
+		{
+			"name": "Announcements",
+			"item": []
+		},
+		{
+			"name": "Quizzes",
+			"item": []
+		},
+		{
+			"name": "Auth",
+			"item": []
+		},
+		{
+			"name": "New Announcement",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Welcome to New Semester 2026\",\r\n  \"content\": \"Dear students, we are excited to welcome you to the Fall semester. Classes will begin on August 15th, 2025. Please make sure to check your course schedules and attend the orientation session on August 14th at 10:00 AM in the main auditorium.\",\r\n  \"author\": \"Dr. Abdelrahman Kasem\",\r\n  \"priority\": \"medium\",\r\n  \"isActive\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/announcements",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"announcements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Announcement",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Welcome to New Semester 2025\",\r\n  \"content\": \"Dear students, we are excited to welcome you to the Fall semester. Classes will begin on August 15th, 2025. Please make sure to check your course schedules and attend the orientation session on August 14th at 10:00 AM in the main auditorium.\",\r\n  \"author\": \"Dr. Abdelrahman Kasem\",\r\n  \"priority\": \"medium\",\r\n  \"isActive\": false\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/announcements/689de3983de5ec602718bda2",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"announcements",
+						"689de3983de5ec602718bda2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Announcement",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/announcements/689de3983de5ec602718bda2",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"announcements",
+						"689de3983de5ec602718bda2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "New Quiz",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Mathematics Quiz 1\",\r\n  \"description\": \"Basic algebra and geometry questions\",\r\n  \"subject\": \"Mathematics\",\r\n  \"instructor\": \"John Doe\",\r\n  \"duration\": 60,\r\n  \"startDate\": \"2025-08-15T09:00:00.000Z\",\r\n  \"endDate\": \"2025-08-15T10:30:00.000Z\",\r\n  \"isActive\": true,\r\n  \"questions\": [\r\n    {\r\n      \"question\": \"What is 2 + 2?\",\r\n      \"options\": [\"3\", \"4\", \"5\", \"6\"],\r\n      \"correctAnswer\": 1\r\n    },\r\n    {\r\n      \"question\": \"What is the area of a circle with radius 5?\",\r\n      \"options\": [\"25π\", \"10π\", \"15π\", \"20π\"],\r\n      \"correctAnswer\": 0\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/quizzes",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"quizzes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Signup",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"abdelrahmankasem@anyware.com\",\r\n  \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users/signup",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"signup"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "User Login",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"email\": \"abdelrahmankasem@anyware.com\",\r\n  \"password\": \"123456\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/users/login",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"users",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "API Health",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "http://localhost:4000/api/health",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "4000",
+					"path": [
+						"api",
+						"health"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Quizzes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VySWQiOiI2ODlkZThhYjliMTI4MzcxYTAwYjU5ZjgiLCJpYXQiOjE3NTUzMzk3MTAsImV4cCI6MTc1NTk0NDUxMH0.eYyoydwSI-fapK2UMfmdRRggzYZ_hTYD5aDgDQ4H1kg",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/quizzes?page=1&limit=5&CS=math&isActive=true",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"quizzes"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						},
+						{
+							"key": "CS",
+							"value": "math"
+						},
+						{
+							"key": "isActive",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Announcements",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/announcements",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"announcements"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get High Priority Announcements",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/announcements?page=1&limit=5",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"announcements"
+					],
+					"query": [
+						{
+							"key": "page",
+							"value": "1"
+						},
+						{
+							"key": "limit",
+							"value": "5"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Active Announcements",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/announcements?priority=high&isActive=true",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"announcements"
+					],
+					"query": [
+						{
+							"key": "priority",
+							"value": "high"
+						},
+						{
+							"key": "isActive",
+							"value": "true"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Active Quizzes",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/quizzes/active",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"quizzes",
+						"active"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Quiz By ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/quizzes/689d20e620739f447dbf766c",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"quizzes",
+						"689d20e620739f447dbf766c"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Announcement By ID",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/announcements/689d1a5b3ff951e375e3d219",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"announcements",
+						"689d1a5b3ff951e375e3d219"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Update Quiz",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Mathematics Quiz 1\",\r\n  \"description\": \"Basic algebra and geometry questions\",\r\n  \"subject\": \"Mathematics\",\r\n  \"instructor\": \"John Doe\",\r\n  \"totalPoints\": 60,\r\n  \"duration\": 60,\r\n  \"startDate\": \"2025-08-15T09:00:00.000Z\",\r\n  \"endDate\": \"2025-08-15T10:30:00.000Z\",\r\n  \"isActive\": true,\r\n  \"questions\": [\r\n    {\r\n      \"question\": \"What is 2 + 2?\",\r\n      \"options\": [\"3\", \"4\", \"5\", \"6\"],\r\n      \"correctAnswer\": 1\r\n    },\r\n    {\r\n      \"question\": \"What is the area of a circle with radius 5?\",\r\n      \"options\": [\"25π\", \"10π\", \"15π\", \"20π\"],\r\n      \"correctAnswer\": 0\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/quizzes/689de07c3f6c52da36ffa0cb",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"quizzes",
+						"689de07c3f6c52da36ffa0cb"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Quiz",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"title\": \"Updated Mathematics Quiz 1\",\r\n  \"description\": \"Basic algebra and geometry questions\",\r\n  \"subject\": \"Mathematics\",\r\n  \"instructor\": \"John Doe\",\r\n  \"duration\": 60,\r\n  \"startDate\": \"2025-08-15T09:00:00.000Z\",\r\n  \"endDate\": \"2025-08-15T10:30:00.000Z\",\r\n  \"isActive\": true,\r\n  \"questions\": [\r\n    {\r\n      \"question\": \"What is 2 + 2?\",\r\n      \"options\": [\"3\", \"4\", \"5\", \"6\"],\r\n      \"correctAnswer\": 1\r\n    },\r\n    {\r\n      \"question\": \"What is the area of a circle with radius 5?\",\r\n      \"options\": [\"25π\", \"10π\", \"15π\", \"20π\"],\r\n      \"correctAnswer\": 0\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{baseURL}}/api/quizzes/689d216620739f447dbf7675",
+					"host": [
+						"{{baseURL}}"
+					],
+					"path": [
+						"api",
+						"quizzes",
+						"689d216620739f447dbf7675"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"variable": [
+		{
+			"key": "baseURL",
+			"value": "http://localhost:4000",
+			"type": "default"
+		}
+	]
+}
